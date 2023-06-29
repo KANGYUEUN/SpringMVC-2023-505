@@ -10,7 +10,14 @@
 <link href="${rootPath}/static/css/main.css?20230628-001" rel="stylesheet" />
 <link href="${rootPath}/static/css/table.css?20230628-001" rel="stylesheet" />
 <link href="${rootPath}/static/css/button.css?20230628-001" rel="stylesheet" />
-<link href="${rootPath}/static/css/form.css?20230628-002" rel="stylesheet" />
+<link href="${rootPath}/static/css/form.css?20230629-008" rel="stylesheet" />
+<script>
+	// JSP에서 사용하는 rootPath 변수를
+	// JS 코드에서 사용하기 위한 rootPath 변수로 재 설정하기
+	var rootPath = "${rootPath}"
+
+</script>
+<script src="${rootPath}/static/js/input.js?20230629-010"></script>
 </head>
 <body>
 	<header>
