@@ -70,8 +70,7 @@ public class AddrServiceImplV1 implements AddrService {
 
 	@Override
 	public AddrDto findById(String id) {
-		addrDao.findById(id);
-		return null;
+		return addrDao.findById(id);
 	}
 
 	@Override
