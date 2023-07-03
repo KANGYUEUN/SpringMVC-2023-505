@@ -107,9 +107,10 @@ public class AddrServiceImplV1 implements AddrService {
 	}
 
 	@Override
-	public int delete(AddrDto addrDto) {
-		int result = addrDao.delete(addrDto);
+	public int delete(String id) {
+		int result = addrDao.delete(id);
 		return result;
 	}
 
+	
 }

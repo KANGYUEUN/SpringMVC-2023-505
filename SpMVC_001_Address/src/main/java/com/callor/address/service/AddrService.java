@@ -22,5 +22,5 @@ public interface AddrService {
 	
 	public int insert(AddrDto addrDto);
 	public int update(AddrDto addrDto);
-	public int delete(AddrDto addrDto);
+	public int delete(String id);
 }

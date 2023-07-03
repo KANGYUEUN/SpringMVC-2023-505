@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set value="${pageContext.request.contextPath}" var="rootPath" />
-<c:set value="20230630-019" var="version"/>
+<c:set value="20230703-018" var="version"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +21,7 @@
 </script>
 <script src="${rootPath}/static/js/input.js?${version}"></script>
 <script src="${rootPath}/static/js/list.js?${version}"></script>
+<script src="${rootPath}/static/js/detail.js?${version}"></script>
 </head>
 <body>
 	<header>
@@ -37,6 +38,10 @@
 		<c:if test="${BODY == 'DETAIL'}">
 			<%@ include file="/WEB-INF/views/addr/detail.jsp"%>
 		</c:if>
+		<c:if test="${BODY == 'UPDATE'}">
+			<%@ include file="/WEB-INF/views/addr/update.jsp"%>
+		</c:if>
+		
 	</section>
 	<footer>
 		<address>CopyRight &copy; callor@callor.com</address>
