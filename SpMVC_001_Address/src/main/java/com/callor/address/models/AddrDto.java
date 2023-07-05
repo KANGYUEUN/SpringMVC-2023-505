@@ -1,5 +1,7 @@
 package com.callor.address.models;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,4 +27,8 @@ public class AddrDto {
 	private String a_name;
 	private String a_tel;
 	private String a_addr;
+	
+	
+	// 취미리스트
+	private List<HobbyByAidVO> hobbyList;
 }

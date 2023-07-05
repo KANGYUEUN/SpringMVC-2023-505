@@ -3,6 +3,8 @@ package com.callor.address.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.callor.address.dao.AddrDao;
 import com.callor.address.models.AddrDto;
+import com.callor.address.models.UserDto;
 import com.callor.address.service.AddrService;
 
 /*
@@ -46,9 +49,27 @@ public class HomeController {
 		List<AddrDto> addrList = addrService.selectAll();
 		return addrList;
 	}
-
+	
+	/*
+	 * localhost:8080/address/insert로 요청이 오면 addr/input.jsp 파일을 열어서 Response하도록
+	 * method 생성.
+	 */
+	// 처음화면에서 주소추가 클릭했을대 추가 화면을 보여주는 method
+	/*
+	 * method의 매개변수로 HttpSession 객체를 설정하는 순간
+	 * 이 method에서 Session 에 저장된 데이터를 참조 할 수 있다.
+	 */
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
-	public String insert(Model model) {
+	public String insert(Model model, HttpSession httpSession) {
+		// Session 으로 부터 USER Attribute 를 getter 하고
+		// 그 데이터를 UserDto type으로 변환하여 userDto 객체에 저장.
+		// 로그인이 되어있으면 userDto 는 실제 로그인한 user 의 정보
+		// 로그인이 되어 있지 않으면 userDto = null값.
+		UserDto userDto = (UserDto) httpSession.getAttribute("USER");
+		if(userDto == null) {
+			// 로그인 창으로 되돌아 가기.
+			return "redirect:/user/login?error=LOGIN";
+		}
 		model.addAttribute("BODY", "INPUT");
 		/*
 		 * Controller 의 method 에서 문자열을 return 하면 "/views/문자열.jsp" 파일을 rendering 하여
@@ -56,11 +77,6 @@ public class HomeController {
 		 */
 		return "home";
 	}
-
-	/*
-	 * localhost:8080/address/insert로 요청이 오면 addr/input.jsp 파일을 열어서 Response하도록
-	 * method 생성.
-	 */
 
 	// produces : 서버가 브라우져에 데이터를 입력할때
 	// 한글이 포함되어 있으면 엔코딩을 하여서 보내라.
@@ -72,8 +88,12 @@ public class HomeController {
 	 * 응답하라는 의미. 원래는 랜더링 해서 보내야함
 	 */
 
-	public String insert(@ModelAttribute AddrDto addrDto) {
-
+	public String insert(@ModelAttribute AddrDto addrDto, Model model, HttpSession httpSession) {
+		
+		UserDto userDto = (UserDto)httpSession.getAttribute("USER");
+		if(userDto == null) {
+			return "redirect:/user/login?error=LOGIN";
+		}
 		addrService.insert(addrDto);
 		// 데이터를 만들고 view를 생성하여 client에게 response 하는
 		// URL이 이미 있으니 client 야 번거롭지만 한번 더 요청 해 주라.

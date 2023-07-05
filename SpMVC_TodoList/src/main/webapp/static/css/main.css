@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  background-color: #ddd;
+  color: #888;
+  text-shadow: 1px 1px 1px #eee;
+  text-align: center;
+  padding: 0.7rem;
+}

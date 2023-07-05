@@ -84,7 +84,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String mypage() {
+	public String mypage(HttpSession httpSession) {
+		UserDto userDto =(UserDto) httpSession.getAttribute("USER");
+		if(userDto == null) {
+			return "redirect:/user/login?error=LOGIN";
+		}
+		
 		return null;
 	}
 	
