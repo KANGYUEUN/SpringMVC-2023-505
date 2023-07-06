@@ -1,4 +1,4 @@
-package com.callor.todolist;
+package com.callor.todo;
 
 import java.text.DateFormat;
 import java.util.Date;
