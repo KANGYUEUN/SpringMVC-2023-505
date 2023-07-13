@@ -21,8 +21,20 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.callor.bbs" />
+	<!-- 
+		Servlet-context 에 설정된 component-scan 설정은 
+		프로젝트의 package에 저장된 클래스 파일들을 모두 scan 하여 
+		@Commponent(@Controller, @Service, @Component) Annotation 이 부착된
+		부분이 발견되면 이 클래스는 객체(Bean)을 생성하여
+		Container에 보관하라 라는 것.
+		
+		여기세어 base-package 를 기본값으로 설정하면
+		프로젝트의 모든 package를 다 검사(scan) 하게 된다.
+		프로젝트 시작을 가볍게 하기위해 꼭 필요한 package만 설정하여 scan을 제한한다.
 	
+	 -->
+	<context:component-scan base-package="com.callor.bbs.controller" />
+	<context:component-scan base-package="com.callor.bbs.service.impl" />
 	
 	
 </beans:beans>
