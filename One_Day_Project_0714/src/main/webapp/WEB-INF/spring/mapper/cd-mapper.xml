@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.cardriver.dao.CdDao">
+	<insert id="insertCD">
+		INSERT INTO tbl_cardrive(
+				cd_inout,
+				cd_stdate,
+				cd_sttime,
+				cd_stdistance,
+				cd_ardate,
+				cd_artime,
+				cd_ardistance,
+				cd_place,
+				cd_price
+			) VALUES ( 
+				#{cd_inout}, DATE_FORMAT(NOW(),'%Y-%m-%d'),
+				#{cd_ardate}, DATE_FORMAT(NOW(),'%H:%i:%S'),
+				#{cd_artime},
+				#{cd_stdistance},
+				#{cd_ardistance},
+				#{cd_place},
+				#{cd_price}
+			)
+	</insert>
+	<update id="updateCD">
+		UPDATE INTO tbl_cardrive
+		SET cd_stdate = DATE_FORMAT(NOW(),'%Y-%m-%d'),
+			cd_sttime = DATE_FORMAT(NOW(),'%H:%i:%S'),
+			cd_ardistance = #{cd_ardistance},
+			cd_place = #{cd_place},
+			cd_price = #{cd_price}
+		WHERE cd_seq = #{cd_seq};
+	</update>
+</mapper> 
