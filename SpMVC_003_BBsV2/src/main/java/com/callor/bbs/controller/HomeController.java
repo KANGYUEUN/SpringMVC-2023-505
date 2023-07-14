@@ -65,23 +65,32 @@ public class HomeController {
 	 * Client 와 Server 간에 변수 이름일 다를때 사용하는 선택사항
 	 */
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(
-			@RequestParam(value = "b_username") String username,
-			MultipartFile b_file,
+	/*
+	 * < 매개변수 설명 >
+	 * BBsDto BBsDto : input tag에 입력한 게시판관련 text 를 받는 곳.
+	 * MultipartFile b_file : input tag 의 type="file"에서 선택한 파일을 받는곳.
+	 */
+	public String insert(BBsDto bbsDto,
+			@RequestParam(value = "b_file")	MultipartFile b_file,
 			Model model
 			) {
-		log.debug("사용자이름 : {} ",username);
+		log.debug("사용자이름 : {} ",bbsDto.getB_username());
 		log.debug(b_file.getOriginalFilename());
 		
-		String fileName = "";
+		String fileName = null;
 		try {
 			fileName = fileService.fileUp(b_file);
+			bbsDto.setB_image(fileName);
+			int result = bbsDao.insert(bbsDto);
+			return "redirect:/";
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// e.printStackTrace();
+			log.debug("파일을 업로드 할수 없음 오류 발생!!!!");
+			// 좋은 방법은 아님.
+			return "redirect:/insert?error=FILE_UP_ERROR";
 		}
-		model.addAttribute("FILE_NAME",fileName);
-		return "input";
+//		model.addAttribute("FILE_NAME",fileName);
+//		return "input";
 	}
 	
 	@RequestMapping(value="/detail",method=RequestMethod.GET)

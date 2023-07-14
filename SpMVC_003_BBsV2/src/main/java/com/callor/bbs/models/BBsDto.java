@@ -24,5 +24,5 @@ public class BBsDto {
 	private String b_content;//	text
 	private int b_count;//	int
 	// b_update;//	datetime
-
+	private String b_image;
 }
