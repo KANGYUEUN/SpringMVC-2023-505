@@ -1,13 +1,17 @@
 package com.callor.bbs.service.impl;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.bbs.config.QualifierConfig;
+import com.callor.bbs.models.FileDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -83,13 +87,31 @@ public class FileServiceImplV2 extends FileServiceImplV1{
 		// image.jpg0000-0000-0000 방지하고자
 		// UUID 키값을 파일이름 앞에 부착하여 새로운 이름으로 변형, 해킹방지.
 		fileName += String.format("%s-%s",strUUID, fileName);
-		
-		
-		
-		
 		File upLodaFile = new File(fileUpPath, fileName);
 		file.transferTo(upLodaFile);
 		return fileName;
+	}
+	
+	@Override
+	public List<FileDto> filesUp(MultipartHttpServletRequest files) throws Exception {
+
+		/*
+		 * 멀티파일을 각 파일로 분리하여 fileUp() 에게 파일을 업로드 하도록 요청하고,
+		 * 원본이름과 변경된 이름을 받아서 returnFiles 를 만들기.
+		 */
+		List<MultipartFile> fileList = files.getFiles("b_images");
+		List<FileDto> returnFiles = new ArrayList<FileDto>();
+				
+		for(MultipartFile file : fileList) {
+			FileDto fileDto = FileDto.builder()
+							.i_originalName(file.getOriginalFilename())
+							.i_uploadName(this.fileUp(file)).build();
+//			fileDto.setI_originalName(file.getOriginalFilename());
+//			fileDto.setI_uploadName(this.fileUp(file));
+			returnFiles.add(fileDto);
+		}
+		
+		return returnFiles;
 	}
 
 }
