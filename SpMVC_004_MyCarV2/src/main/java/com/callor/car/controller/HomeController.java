@@ -26,7 +26,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(@ModelAttribute("CAR") CarDto carDto) {
 		log.debug("나는 HOMECONTROLLER ");
-		return "home";
+		return "car/input";
 	}
 	
 	@RequestMapping(value = "/input", method=RequestMethod.POST)

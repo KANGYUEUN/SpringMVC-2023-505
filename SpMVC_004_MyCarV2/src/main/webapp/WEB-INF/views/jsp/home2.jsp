@@ -37,7 +37,7 @@
 		</ul>
 	</nav>
 	<section class="main">
-		<%@ include file="/WEB-INF/views/car/input.jsp" %>
+		<%@ include file="/WEB-INF/views/jsp/car/input.jsp" %>
 	</section>
 	<footer>
 		<address>CopyRight &copy; yu1128eun@kakao.com All Right Reserved</address>
