@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.car.persistance.UserDao">
+ 
+ 	<insert id="insert">
+ 	insert into tbl_users (username, password, u_name, u_nickname, u_tel, u_role)
+ 	VALUES
+ 		(#{username}, #{password}, #{u_name}, #{u_nickname}, #{u_tel}, #{u_role})
+ 	</insert>
+ 	<update id="update"></update>
+ 
+ 	<select id="selectAll"></select>
+ 	<select id="create_user_table">
+ 	
+		create table IF NOT Exists tbl_users (
+			username	VARCHAR(15)		PRIMARY KEY,
+			password	VARCHAR(255)	NOT NULL,	
+			u_name		VARCHAR(20)		NOT NULL,	
+			u_nickname	VARCHAR(20),		
+			u_tel		VARCHAR(15),		
+			u_role		VARCHAR(15)		NOT NULL	
+		)
+ 	</select>
+ </mapper> 

@@ -1,15 +1,11 @@
-const err_clear = () => {
-  const err_box_list = document.querySelectorAll("div_error");
-  for (let box of error_box_list) {
-    box.classList.remove("on");
-  }
-};
-
-const err_message = (err_box, e, message) => {
+const err_message = (e, err_box, message) => {
   const value = e.value;
-  if (!carnum) {
-    err_clear();
+  // if(value === "") 위와 아래는 같은 코드 이다.
+  if (!value) {
     err_box.classList.add("on");
     err_box.innerHTML = message;
+    e.select();
+    return false;
   }
+  return true;
 };
