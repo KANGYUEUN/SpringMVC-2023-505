@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.ruru.bookRent.dao.UserDao">
+ 
+ 	<select id="findUserName">
+		select * from tbl_users
+			where u_name = #{name}
+			order by u_code desc
+			limit 1
+ 	</select>
+ 	
+ 	<select id="findUserTel">
+		select * from tbl_users
+			where u_name = #{name}
+			order by u_code desc, u_name desc
+			limit 1
+ 	</select>
+ 	 	
+ 	<insert id="Userinsert">
+ 		INSERT INTO tbl_users (
+ 			u_code, u_name, u_tel, u_addr
+ 		) VALUES (
+ 			#{u_code}, #{u_name}, #{u_tel}, #{u_addr}
+ 		)
+ 	</insert>
+ 	
+ 	<update id="Userupdate">
+ 		UPDATE tbl_users SET
+ 			u_name = #{u_name}, 
+ 			u_tel = #{u_tel}, 
+ 			u_addr = #{u_addr}, 
+ 		WHERE u_code = #{u_code} 	  
+ 	</update>
+ 	
+ 	<delete id="Userdelete">
+ 		DELETE FROM tbl_users 
+ 			u_name = #{u_name}, 
+ 			u_tel = #{u_tel}, 
+ 			u_addr = #{u_addr}, 
+ 		WHERE u_code = #{u_code}
+ 	</delete>
+ </mapper> 

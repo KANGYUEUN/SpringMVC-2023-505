@@ -15,8 +15,16 @@ show tables;
 drop table tbl_users;
 show tables;
 
-select * from tbl_carmanager;alter
-insert into tbl_user (username, password, u_name, u_nickname, u_tel, u_role)
+
+insert into tbl_users (username, password, u_name, u_nickname, u_tel, u_role)
+VALUES
+('yu1128eun','12341234','강유은','ruru','','admin');
+
+
+select * from tbl_users;
+select * from tbl_carmanager;
+
+
 
 
 

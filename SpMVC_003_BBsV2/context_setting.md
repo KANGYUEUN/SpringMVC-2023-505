@@ -9,4 +9,4 @@
 ## servlet-context(`/WEB-INF/spring/appServlet/*-context.xml`)
 - Dispatcher Servlet 이 실행되면서 개발자가 만든 Controller, Service, Dao 등에서 사용하는 항목이다.
 
-C:\Users\KMS505233\Documents\workspace\springMVC\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SpMVC_003_BBsV2\files\cat-g1dcc46a5c_1280.jpg
+C:\Users\KMS505233\Documents\workspace\springMVC\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SpMVC_003_BBsV2\files
