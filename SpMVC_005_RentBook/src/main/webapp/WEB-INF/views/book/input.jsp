@@ -13,7 +13,7 @@
 	<h1>도서정보 ${STATE == 'UPDATE' ? '수정' : '추가' }</h1>
 	<%
 	/*
-		spring form taglib
+		< spring form taglib >
 		html코딩에서 만들 여러가지 속성을 자동으로 구성해주는 Spring 확장 form tag
 		Controller 에서 생성한 ModelAttribute 와 연계되고 
 		각 input box path 속성과 연계되어 상당히 많은 코드를 자동으로 생성해 준다.

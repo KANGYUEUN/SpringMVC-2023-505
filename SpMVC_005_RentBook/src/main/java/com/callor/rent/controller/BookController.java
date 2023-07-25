@@ -44,9 +44,7 @@ public class BookController {
 	@RequestMapping(value = "/insert", method= RequestMethod.POST)
 	public String insert(@ModelAttribute("BOOK") BookDto bookDto, Model model) {
 		log.debug("전달된 데이터 {}",bookDto);
-		
 		int result = bookService.insert(bookDto);
-		
 		return "redirect:/book";
 	}
 	
