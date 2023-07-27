@@ -62,4 +62,19 @@ ON R.rent_mcode = M.m_code
 left join tbl_books B
 on R.rent_bcode = B.b_code;
 
+-- 2023-07-27
+
+-- 처음시작에서 10개를 건너뛰고 : offset 10
+-- 그 위치부터 10개를 SELECT 해라
+use rentbookdb;
+select * from tbl_books
+order by b_code
+Limit 10 offset 1; 
+
+-- 전체 데이터 중에서 5페이지 10개를 보고싶다.
+-- 전체 데이터 중에서 1페이지의 10개 : 0 ~ 9번 까지 보여주기
+-- 1페이지 일 경우 시작값 1이 될려면 (page - 1) * 10 + 1
+-- 전체 데이터 중에서 2페이지 10 개 : 10번~19번까지 
+-- 2페이지 일 경우 시작값이 10이 되려면 (page - 1) * 10
+-- 3페이지에서 10개를 보기 : (page - 1) * 10
 

@@ -26,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 @RequestMapping(value = "/rent")
+
 /*
  * Spring 에서 사용할 수 있는 Session은 2가지 종류가 있다.
  * HttpSession : Servlet 차원에서 Http Protocol 상에 구현하는 Session 

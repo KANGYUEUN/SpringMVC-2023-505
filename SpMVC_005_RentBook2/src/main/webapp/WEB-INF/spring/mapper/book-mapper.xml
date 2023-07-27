@@ -4,7 +4,24 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.callor.rent.dao.BookDao">
-
+	
+	<select id="selectSearchCount">
+		SELECT COUNT(*) FROM tbl_books
+		WHERE
+			<foreach collection="list" item="S" separator="OR">
+				b_name LIKE CONCAT('%', #{S}, '%')
+			</foreach>		
+	</select>
+	
+	<select id="selectSearchPage">
+		SELECT * FROM tbl_books
+		WHERE
+			<foreach collection="list" item="S" separator="OR">
+				b_name LIKE CONCAT('%', #{S}, '%')
+			</foreach>
+			LIMIT #{limit} OFFSET #{offset}
+	</select>
+	
 	<insert id="insert">
 		INSERT INTO tbl_books(
 		B_CODE,B_NAME,B_AUTHOR,B_COMP,B_YEAR,B_IPRICE,B_RPRICE

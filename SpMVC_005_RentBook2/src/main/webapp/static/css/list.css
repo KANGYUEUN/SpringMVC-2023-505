@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+table,
+div.list {
+  width: 80%;
+  margin: 1rem auto;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  white-space: nowrap;
+}
+
+tr:nth-of-type(odd) {
+  background-color: #ddd;
+}
+
+tr:nth-of-type(even) {
+  background-color: #eee;
+}
+
+tr:hover {
+  background-color: #ccc;
+}
+
+div.pagination {
+  text-align: center;
+}
+
+div.pagination ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+div.pagination li {
+  padding: 5px;
+  margin: 2px;
+  border: 1px solid skyblue;
+  border-radius: 3px;
+}
+div.pagination li.active {
+  background-color: blue;
+  color: white;
+}
