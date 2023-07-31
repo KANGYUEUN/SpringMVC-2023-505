@@ -8,9 +8,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.callor.file.model.FileDto;
 
 public interface FileService {
-	
-	public String fileUp(MultipartFile file) throws Exception;
-	public List<FileDto> filesUp(MultipartHttpServletRequest files) throws Exception;
-	public String delete(String fileName);
 
-}
+	public String fileup(MultipartFile file) throws Exception;
+	public List<FileDto> filesUP(MultipartHttpServletRequest files) throws Exception;
+	
+	public String delete(String fileName);
+	
+	
+	}
