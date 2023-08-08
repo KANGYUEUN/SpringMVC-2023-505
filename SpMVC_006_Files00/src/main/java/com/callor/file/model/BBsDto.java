@@ -28,4 +28,5 @@ public class BBsDto {
 	private String b_image;
 	private String b_origin_image;
 	
+	//private List<>
 }
