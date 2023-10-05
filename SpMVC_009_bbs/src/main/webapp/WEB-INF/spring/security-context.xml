@@ -8,49 +8,61 @@
 		http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security-5.3.xsd">
 
 
-	<!-- Security 를 프로젝트에 적용하기 위한 설정 
-		sever 에 Request  가 발생했을때
-		Security  에 의해  filtering 을  하기위한 설정 
-		
-		sec:form-login : 로그인을 수행하는 기능 설정
-		sec:logout : 로그아웃을 수행하는 기능 설정
-		sec:intercept-url : 서버에 Req URL 을 필터링 하는 설정 
-	-->
-	
+	<!-- Security 를 프로젝트에 적용하기 위한 설정 sever 에 Request 가 발생했을때 Security 에 의해 filtering 
+		을 하기위한 설정 sec:form-login : 로그인을 수행하는 기능 설정 sec:logout : 로그아웃을 수행하는 기능 설정 
+		sec:intercept-url : 서버에 Req URL 을 필터링 하는 설정 -->
+
 	<sec:http auto-config="true" use-expressions="true">
-	
-		<sec:intercept-url pattern="/bbs/insert" access=" hasAnyRole('USER', 'ADMIN')"/>
-		<sec:intercept-url pattern="/bbs" access="isAnonymous()"/>
-	
-		<sec:intercept-url pattern="/admin" access="hasRole('ADMIN')"/>
-		<sec:intercept-url pattern="/admin/sec" access="isAuthenticated AND hasRole('ADMIN')"/>
-	
-		<sec:intercept-url pattern="/user/join" access="isAnonymous()"/>
-		<sec:intercept-url pattern="/user/login" access="permitAll() "/>
-		<sec:intercept-url pattern="/user/mypage" access="isAuthenticated()"/>
-	
-		<sec:intercept-url pattern="/**" access="permitAll()"/>	
-		<sec:form-login/>
-		<sec:logout logout-success-url="/" invalidate-session="true"/>
-	
+
+		<sec:intercept-url pattern="/bbs/insert"
+			access=" hasAnyRole('USER', 'ADMIN')" />
+		<sec:intercept-url pattern="/bbs"
+			access="isAnonymous()" />
+
+		<sec:intercept-url pattern="/admin"
+			access="hasRole('ADMIN')" />
+		<sec:intercept-url pattern="/admin/sec"
+			access="isAuthenticated AND hasRole('ADMIN')" />
+
+		<sec:intercept-url pattern="/user/join"
+			access="isAnonymous()" />
+		<sec:intercept-url pattern="/user/login"
+			access="permitAll() " />
+		<sec:intercept-url pattern="/user/mypage"
+			access="isAuthenticated()" />
+
+		<sec:intercept-url pattern="/**"
+			access="permitAll()" />
+		<sec:form-login login-page="/user/login"
+			login-processing-url="/user/login" 
+			username-parameter="U_name"
+			password-parameter="U_pass"
+			default-target-url="/" />
+		<sec:logout logout-success-url="/"
+			invalidate-session="true" />
+
 	</sec:http>
-	
-	
-	<!-- filtering 을 수행한후 login 관련 테스트를 하기위한 임시 로그인 정보를 설정  -->
+
+	<!-- Java 클래스를 통해서 로그인 기능을 수행하도록 authentication manager 등록하기 -->
+	<context:component-scan
+		base-package="com.callor.bbs.service.auth" />
 	<sec:authentication-manager>
-		<sec:authentication-provider>
-			<sec:user-service>
-				<sec:user name="callor" authorities="USER" password="{noop}12345"/>
-				<sec:user name="ruru" authorities="ADMIN" password="{noop}12345"/>
-			</sec:user-service>
-		</sec:authentication-provider>
+		<sec:authentication-provider
+			ref="authProvider" />
 	</sec:authentication-manager>
-	
-	<!-- 권한부여를 할때 ROLE_이라는 prefix 를 사용하도록 설정 되어 있다.
-		prefix 없이 권한을 부여하기 위한 클래스를 객체로 선언한다. 
-	 -->
-	<bean class="org.springframework.security.config.core.GrantedAuthorityDefaults">
-		<constructor-arg value=""/>
-	
+
+
+	<!-- filtering 을 수행한후 login 관련 테스트를 하기위한 임시 로그인 정보를 설정 -->
+	<!-- <sec:authentication-manager> <sec:authentication-provider> <sec:user-service> 
+		<sec:user name="callor" authorities="USER" password="{noop}12345"/> <sec:user 
+		name="ruru" authorities="ADMIN" password="{noop}12345"/> </sec:user-service> 
+		</sec:authentication-provider> </sec:authentication-manager> -->
+
+	<!-- 권한부여를 할때 ROLE_이라는 prefix 를 사용하도록 설정 되어 있다. prefix 없이 권한을 부여하기 위한 클래스를 
+		객체로 선언한다. -->
+	<bean
+		class="org.springframework.security.config.core.GrantedAuthorityDefaults">
+		<constructor-arg value="" />
+
 	</bean>
 </beans>

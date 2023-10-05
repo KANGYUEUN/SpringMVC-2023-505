@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.mapping.AccessOptions.GetOptions.GetNulls;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,26 +18,21 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString
-@Builder
+@AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name="tbl_users", schema = "jpaDB")
-public class UserDto {
+@Builder
 
+@Entity
+@Table(name="tbl_auths",schema = "jpaDB")
+public class AuthorityDto {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;			//bigint
+	private long seq;
 	
 	@Column(name="username", columnDefinition = "VARCHAR(20)")
-	private String username;	//varchar(255)
+	private String username;
+	private String authority;
 	
-	@Column(name = "password", columnDefinition = "VARCHAR(125)")
-	private String password;	//varchar(255)
-	private String email;		//varchar(255)
-	private String nickname;	//varchar(255)
-	
-	@Column(nullable = true)
-	private int age;			//int
 }

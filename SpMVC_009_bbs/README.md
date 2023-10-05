@@ -71,6 +71,13 @@
 
 ## Spring Security 현재 버전을 원활하게 사용하기 위해 Servlet 관련 dependecies 변경 
 
+## DB와 Security  연동하기 
+- 로그인한 사용자 정보를 DB 와 연동하기 위해서는 여러가지 방법이 있다.
+- 그중에 `AuthenticationProvider` 인터페이스를 상속받아 사용하는 방법이 비교적 쉽다 
+- `.service.auth`패키지에 `AuthProvider` 클래스를 `AuthenticationProvider`를 상속하여 생성하고 두개의 method 를 통해 코드를 작성한다. 
+
+
+
 ## Spring Data-JPA 초기화 정책
 - Spring-Data 프로젝트는 SQL 을 가급적 사용하지 않고, Java의 DataClass(Dto, VO)와 연동하여
 Object-Reltion-Mapping 형태로 DBMS의 CRUD를 구현하는 프로젝트 

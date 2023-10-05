@@ -9,21 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.callor.bbs.models.UserDto;
-import com.callor.bbs.repository.UserRepoditory;
-
+import com.callor.bbs.repository.UserRepository;
 @Controller
 public class HomeController {
 	
-	private UserRepoditory userDao;
-	public HomeController(UserRepoditory userDao) {
+	private final UserRepository userDao;
+	public HomeController(UserRepository userDao) {
+		// TODO Auto-generated constructor stub
 		this.userDao = userDao;
-	
 	}
-	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		List<UserDto> userList =  userDao.findAll();
+		List<UserDto> userList = userDao.findAll();
 		return "home";
 	}
 	
